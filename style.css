@@ -1,0 +1,19 @@
+.login-card {
+    display: block;
+    margin: 20px auto;
+    float: none;
+    margin-bottom: 10px;
+}
+
+.calendar {
+    display: block;
+    margin: 10px auto;
+    float: none;
+}
+
+.column-card {
+    display: block;
+    margin: 20px auto;
+    float: none;
+    margin-bottom: 10px;
+}
