@@ -14,6 +14,16 @@ const createNotebookAction = () => {
     });
 };
 
+//Pagination
+const loadPages = () =>{
+    $.get(baseUrl + 'notebooks/1', (response) => {
+        const pages = response.pages;
+        for(let i = 1; i <= pages; i++) {
+            console.log(i);
+        };
+    });
+};
+
 //Get created notebooks
 const loadNotebooks = () => {
     $.get(baseUrl + 'notebooks/1', (response) => {
@@ -37,5 +47,6 @@ const loadNotebooks = () => {
 //Document ready method
 $(document).ready( () => {
     createNotebookAction();
+    loadPages();
     loadNotebooks();
 });
