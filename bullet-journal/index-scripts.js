@@ -18,9 +18,22 @@ const createNotebookAction = () => {
 const loadPages = () =>{
     $.get(baseUrl + 'notebooks/1', (response) => {
         const pages = response.pages;
+        let fragment = document.createDocumentFragment();
+
+        let previous = document.createDocumentFragment();
+        $(previous).append('<li class="page-item"><a class="page-link" href="#">Previous</a></li>');
+
+        let next = document.createDocumentFragment();
+        $(next).append('<li class="page-item"><a class="page-link" href="#">Next</a></li>');
+
+        fragment.appendChild(previous);
         for(let i = 1; i <= pages; i++) {
-            console.log(i);
+            let link = document.createDocumentFragment();
+            $(link).append('<li class="page-item"><a class="page-link" href="#">'+i+'</a></li>');
+            fragment.appendChild(link);
         };
+        fragment.appendChild(next);
+        $('#pagination').append(fragment);
     });
 };
 
@@ -34,6 +47,8 @@ const loadNotebooks = () => {
                     '<div class="card" style="width: 10px;">' +
                     '<div class="card-body">' +
                     '<h5 class="card-title">'+ name + '</h5>' +
+                    '<button type="button" class="btn btn-primary" id="notebook-button">Open</button>' +
+                    '<button type="button" class="btn btn-danger" id="delete-notebook-button">Delete</button>' +
                     '</div>' +
                     '</div>' +
                     '</div>'
@@ -47,6 +62,6 @@ const loadNotebooks = () => {
 //Document ready method
 $(document).ready( () => {
     createNotebookAction();
-    loadPages();
     loadNotebooks();
+    loadPages();
 });
