@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../bujo-backend/.idea/bujo-backend.iml" filepath="$PROJECT_DIR$/../bujo-backend/.idea/bujo-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/bullet-journal.iml" filepath="$PROJECT_DIR$/.idea/bullet-journal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../bullet-journal-backend/.idea/bullet-journal-backend.iml" filepath="$PROJECT_DIR$/../bullet-journal-backend/.idea/bullet-journal-backend.iml" />
     </modules>
   </component>
 </project>
