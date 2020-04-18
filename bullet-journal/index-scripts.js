@@ -18,7 +18,15 @@ const createNotebookAction = () => {
 const loadNotebooks = () => {
     $.get(baseUrl + 'notebooks/1', (response) => {
         $(response.notebooks).each( () => {
-                console.log(this.name);
+                $('#notebooks').append(
+                    '<div class="card-deck notebook-card">'+
+                    '<div class="card" style="width: 10px;">' +
+                    '<div class="card-body">' +
+                    '<h5 class="card-title">Testing</h5>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>'
+                )
             });
     });
     };
