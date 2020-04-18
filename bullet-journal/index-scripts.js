@@ -17,7 +17,9 @@ const createNotebookAction = () => {
 //Get created notebooks
 const loadNotebooks = () => {
     $.get(baseUrl + 'notebooks/1', (response) => {
-        console.log(response);
+        $(response.notebooks).each( () => {
+                console.log(this.name);
+            });
     });
     };
 
