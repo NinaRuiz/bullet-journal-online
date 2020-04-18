@@ -15,15 +15,13 @@ const createNotebookAction = () => {
 };
 
 //Get created notebooks
-const getNotebooks = () => {
-    $.get(baseUrl + 'notebooks', (response) => {
-
-    });
-};
+const loadNotebooks = () => {
+    console.log('load');
+    };
 
 
 //Document ready method
 $(document).ready( () => {
     createNotebookAction();
-
+    loadNotebooks();
 });
