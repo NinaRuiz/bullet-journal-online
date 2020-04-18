@@ -17,17 +17,19 @@ const createNotebookAction = () => {
 //Get created notebooks
 const loadNotebooks = () => {
     $.get(baseUrl + 'notebooks/1', (response) => {
-        $(response.notebooks).each( () => {
+        $(response.notebooks).each( function() {
+                const name = this.name;
                 $('#notebooks').append(
                     '<div class="card-deck notebook-card">'+
                     '<div class="card" style="width: 10px;">' +
                     '<div class="card-body">' +
-                    '<h5 class="card-title">Testing</h5>' +
+                    '<h5 class="card-title">'+ name + '</h5>' +
                     '</div>' +
                     '</div>' +
                     '</div>'
-                )
-            });
+                );
+            }
+        );
     });
     };
 
