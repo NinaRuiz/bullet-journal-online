@@ -10,6 +10,9 @@ const createNotebookAction = () => {
             $.post(baseUrl+'notebook', {name: name}, (response) => {
                 console.log(response);
             }, 'JSON');
+            $('#exampleModal').modal('toggle');
+            loadNotebooks();
+            deleteNotebook();
         });
     });
 };
@@ -49,13 +52,14 @@ const loadPage = () => {
         $.get(baseUrl + 'notebooks/'+ pageNumber, (response) => {
             $(response.notebooks).each( function() {
                     const name = this.name;
+                    const id = this._id;
                     $('#notebooks').append(
                         '<div class="card-deck notebook-card">'+
                         '<div class="card" style="width: 10px;">' +
                         '<div class="card-body">' +
                         '<h5 class="card-title">'+ name + '</h5>' +
                         '<button type="button" class="btn btn-primary" id="notebook-button">Open</button>' +
-                        '<button type="button" class="btn btn-danger" id="delete-notebook-button">Delete</button>' +
+                        '<button type="button" class="btn btn-danger delete-button" id="delete-notebook-button" data-id="'+ id +'">Delete</button>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
