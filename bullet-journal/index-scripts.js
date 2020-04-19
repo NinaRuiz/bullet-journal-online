@@ -62,33 +62,58 @@ const loadPage = () => {
                     );
                 }
             );
+            deleteNotebook();
         });
-
-
     });
-
 };
 
 //Get created notebooks
 const loadNotebooks = () => {
+    $('#notebooks').html('LOADING...');
     $.get(baseUrl + 'notebooks/1', (response) => {
+        $('#notebooks').html('');
         $(response.notebooks).each( function() {
                 const name = this.name;
+                const id = this._id;
                 $('#notebooks').append(
                     '<div class="card-deck notebook-card">'+
                     '<div class="card" style="width: 10px;">' +
                     '<div class="card-body">' +
                     '<h5 class="card-title">'+ name + '</h5>' +
                     '<button type="button" class="btn btn-primary" id="notebook-button">Open</button>' +
-                    '<button type="button" class="btn btn-danger" id="delete-notebook-button">Delete</button>' +
+                    '<button type="button" class="btn btn-danger delete-button" id="delete-notebook-button" data-id="'+ id +'">Delete</button>' +
                     '</div>' +
                     '</div>' +
                     '</div>'
                 );
             }
         );
+        deleteNotebook();
     });
     };
+
+//Delete Button
+const deleteNotebook = () => {
+    $('.delete-button').click( function () {
+            if(confirm('¿Eliminar cuaderno?')) {
+                const id = $(this).attr('data-id');
+                console.log(id);
+                $.ajax({
+                    method: "DELETE",
+                    url: baseUrl + "notebook/" + id
+                })
+                    .done( function () {
+                        alert("Data deleted");
+                        loadNotebooks();
+                    })
+                    .fail( function (error) {
+                        console.log(error);
+                        alert('There was a problem trying to delete the notebook.');
+                        loadNotebooks();
+                    });
+            }
+        });
+};
 
 
 //Document ready method
@@ -96,4 +121,5 @@ $(document).ready( () => {
     createNotebookAction();
     loadNotebooks();
     loadPages();
+
 });
